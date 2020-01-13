@@ -47,7 +47,7 @@ if(getenv('TEST_SCHEMAS'))
 if(getenv('TEST_TABLES'))
   $tables=getenv('TEST_TABLES');
 if(getenv('TEST_QUERIES'))
-  $tables=getenv('TEST_QUERIES');
+  $queries=getenv('TEST_QUERIES');
 if(getenv('TEST_TARGET_QPS'))
   $target_qps=getenv('TEST_TARGET_QPS');
 if(getenv('MYSQL_HOST'))
