@@ -58,7 +58,7 @@ if(getenv('MYSQL_PASSWORD'))
   $mysql_password=getenv('MYSQL_PASSWORD');
 
 
-echo("Schemas:  $schemas,  Tables: $tables,  Queries: $queries\n");
+echo("Schemas:  $schemas,  Tables: $tables,  Queries: $queries   Target Queries Per Second: $target_qps\n");
 
 
 
@@ -100,8 +100,13 @@ while(1)
    run_query($schema,$table,$query);
    $end=microtime(1);
    $round_time=$end-$start;
+#   echo("Round Took: $round_time\n");
    if($round_time<$target_round_time) /* Went faster than needed */
-     usleep($target_round_time-$round_time);
+   {
+     $sleep=($target_round_time-$round_time)*1000000;
+#     echo("Sleeping $sleep microseconds\n");
+     usleep($sleep);     
+   } 
 }
 
 
